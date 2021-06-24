@@ -43,7 +43,15 @@ class HoneyPot:
         if not data:
             print('no more data from', connection)
 
-        connection.sendall(b'OK\r\n')
+        try:
+            connection.sendall(b'HTTP/1.1 200 OK\r\n')
+            connection.sendall(b'Content-Type: text/plain; charset=utf-8\r\n')
+            connection.sendall(b'Connection: close\r\n')
+            connection.sendall(b'\r\n')
+            connection.sendall(b'OK\r\n')
+        except BaseException:
+            pass
+
         self.ref_tc.dec_threads()
         logger.dump('Closing socket', 'info')
 

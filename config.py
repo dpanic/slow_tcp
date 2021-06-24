@@ -7,6 +7,6 @@ c = {
     'listen_ports': [
         4443,
     ],
-    'connection_delay': 5,
+    'connection_delay': 30,
     'max_thread_alive': 50
 }
